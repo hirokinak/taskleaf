@@ -6,3 +6,11 @@
 		= f.label :description
 		= f.text_area :description, rows: 5, class: 'form-control', id: 'task_description'
 	= f.submit nil, class: 'btn btn-primary'
+
+- if task.errors.any?
+  #error_explanation
+    h2 = pluralize(task.errors.count, "error")
+      | prohibited this entry from being saved:
+    ul
+      - task.errors.full_messages.each do |message|
+        li = message
